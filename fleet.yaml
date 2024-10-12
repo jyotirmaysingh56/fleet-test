@@ -1,0 +1,19 @@
+namespace: default
+
+targets:
+  - name: nodejs-express-target
+    clusterSelector:
+      matchLabels:
+        name: local # Your Kubernetes cluster name
+
+helm:
+  releaseName: nodejs-express-release
+  chart: ./k8s/
+  values:
+    image:
+      repository: nginx # replace with your image registry
+      tag: latest
+    service:
+      type: ClusterIP
+      port: 80
+    replicas: 1

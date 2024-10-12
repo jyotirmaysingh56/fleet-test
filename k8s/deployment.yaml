@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-express-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs-express-app
+  template:
+    metadata:
+      labels:
+        app: nodejs-express-app
+    spec:
+      containers:
+      - name: nodejs-express-app
+        image: nginx # replace with your image registry
+        ports:
+        - containerPort: 80
+        env:
+        - name: NODE_ENV
+          value: production
